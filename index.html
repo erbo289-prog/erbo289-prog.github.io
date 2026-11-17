@@ -2,9 +2,104 @@
 <html lang="ca">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PT 2.5 - GOOGLE SIGN IN</title>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <meta name="google-signin-client_id" content="354835600135-of92viesep7s8tddqhjl3u6kj64ifn2r.apps.googleusercontent.com">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+      color: #fff;
+      background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #ff4e8a, #4facfe);
+      background-size: 400% 400%;
+      animation: fons 18s ease infinite;
+    }
+
+    @keyframes fons {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .targeta {
+      width: 100%;
+      max-width: 520px;
+      padding: 48px 36px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 28px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      animation: entrada 1s ease both;
+    }
+
+    @keyframes entrada {
+      from { opacity: 0; transform: translateY(40px) scale(0.95); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 2.1rem;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, #ffd86f, #ff4e8a, #4facfe);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+    }
+
+    p {
+      margin: 0 0 28px;
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    h2 {
+      margin: 0 0 24px;
+      padding: 14px 18px;
+      font-size: 1.3rem;
+      background: rgba(79, 172, 254, 0.25);
+      border: 1px solid rgba(79, 172, 254, 0.6);
+      border-radius: 14px;
+      animation: entrada 0.6s ease both;
+    }
+
+    .g_id_signin {
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    #boto-sortir {
+      padding: 12px 32px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(90deg, #ff4e8a, #ff8a4e);
+      box-shadow: 0 8px 22px rgba(255, 78, 138, 0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin: 0 auto;
+    }
+
+    #boto-sortir:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(255, 78, 138, 0.65);
+    }
+  </style>
 </head>
 <body>
   <div id="g_id_onload"
@@ -12,14 +107,16 @@
        data-callback="onSignIn">
   </div>
 
-  <h1>PT 2.5 - GOOGLE SIGN IN</h1>
-  <p>Pàgina preparada per afegir el OAuth 2</p>
+  <div class="targeta">
+    <h1>PT 2.5 - GOOGLE SIGN IN</h1>
+    <p>Pàgina preparada per afegir el OAuth 2</p>
 
-  <h2 id="missatge-benvinguda" style="display:none;">Missatge de benvinguda</h2>
+    <h2 id="missatge-benvinguda" style="display:none;">Missatge de benvinguda</h2>
 
-  <div class="g_id_signin" data-type="standard"></div>
+    <div class="g_id_signin" data-type="standard"></div>
 
-  <button id="boto-sortir" style="display:none;" onclick="signOut()">Desconnectar</button>
+    <button id="boto-sortir" style="display:none;" onclick="signOut()">Desconnectar</button>
+  </div>
 
   <script>
     function onSignIn(response) {
@@ -40,7 +137,7 @@
     function signOut() {
       document.getElementById('missatge-benvinguda').style.display = 'none';
       document.getElementById('boto-sortir').style.display = 'none';
-      document.querySelector('.g_id_signin').style.display = 'block';
+      document.querySelector('.g_id_signin').style.display = 'flex';
     }
   </script>
 </body>
